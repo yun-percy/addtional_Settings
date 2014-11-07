@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <CheckBoxPreference android:title="状态栏网速" android:key="statusbar_traffic"/>
-
+    <CheckBoxPreference 
+        android:defaultValue="true"
+        android:title="状态栏网速" 
+        android:key="statusbar_traffic" 
+        />
+	<CheckBoxPreference 
+	    android:defaultValue="true"
+	    android:title="全局圆角" 
+	    android:key="systemui_roundr"
+	    />
 </PreferenceScreen>

@@ -1,4 +1,4 @@
-package com.example.traffic_setting;
+package com.android.settings.yun;
 
 
 import android.content.Context;
@@ -20,12 +20,16 @@ public class MainActivity extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.yunsetting_preference);
 		mContext = this;
+		change_statusbar_traffic();
+		CheckBoxPreference systemui_roundr=(CheckBoxPreference)findPreference("systemui_roundr");
+		
+	}
+	private void change_statusbar_traffic() {
 		CheckBoxPreference mstatusbar_traffic=(CheckBoxPreference)findPreference("statusbar_traffic");
 		mstatusbar_traffic.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			
 			@Override
 			public boolean onPreferenceClick(Preference arg0) {
-				// TODO Auto-generated method stub
 				return true;
 			}
 		});
@@ -34,7 +38,7 @@ public class MainActivity extends PreferenceActivity {
 			@Override
 			public boolean onPreferenceChange(Preference arg0, Object arg1) {
 				Intent it = new Intent("android.intent.action.MAIN");
-			   	it.setClassName("com.hqucsx.traffic_monitor","com.hqucsx.traffic_monitor.HandlerService");
+			   	it.setClassName("com.android.systemui.yun.traffic","com.android.systemui.yun.traffic.HandlerService");
 				if((Boolean)arg1==true){
 					Toast.makeText(mContext, "checkBox_0改变的值为123" + (Boolean)arg1, Toast.LENGTH_LONG).show();
 					
@@ -44,16 +48,10 @@ public class MainActivity extends PreferenceActivity {
 					Toast.makeText(mContext, "checkBox_0改变的值为" + (Boolean)arg1, Toast.LENGTH_LONG).show();
 					stopService(it);
 				}
-//				Intent nettraffic=new Intent();
-//				nettraffic.setAction(STATUSBAR_TRAFFIC);
-//				nettraffic.putExtra("nettraffic", (Boolean)arg1);
-//				sendBroadcast(nettraffic);
-				
 				return true;
 			}
 		});
 	}
-
 	
 
 }
